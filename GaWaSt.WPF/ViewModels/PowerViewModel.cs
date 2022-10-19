@@ -46,6 +46,9 @@ public partial class PowerViewModel
     [ObservableProperty] 
     private bool _isBasicPricePerYearChangeSaved;
 
+    [ObservableProperty] private DateTime _selectedDate = DateTime.Now;
+    [ObservableProperty] private double _newEntryValue;
+
     [ObservableProperty] 
     private ObservableCollection<PowerEntryModel> _powerEntrys = new ObservableCollection<PowerEntryModel>();
 
@@ -99,6 +102,15 @@ public partial class PowerViewModel
     {
         IsChangePricePerKWhChecked = false;
         _iniReader.Write("consumingpricePerKWh", Convert.ToString(PricePerKWh), "Power");
+    }
+
+    [RelayCommand]
+    private void SaveNewEntry()
+    {
+        string dateConverted;
+        dateConverted = SelectedDate.ToShortDateString();
+        PowerEntrys.Add(new PowerEntryModel(dateConverted, NewEntryValue));
+        //TODO: Save Entrys in csv file or database or whatever
     }
 
     #endregion

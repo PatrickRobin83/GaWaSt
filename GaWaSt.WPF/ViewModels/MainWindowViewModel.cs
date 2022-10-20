@@ -44,7 +44,7 @@ public partial class MainWindowViewModel
 
     public MainWindowViewModel()
     {
-        CurrentView = _gasView;
+        CurrentView = _powerView;
     }
     #endregion
 
